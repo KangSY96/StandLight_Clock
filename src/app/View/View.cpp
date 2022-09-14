@@ -1,13 +1,14 @@
 #include "View.h"
 #include <wiringPi.h>
 
-View::View(Led *led1, Led *led2, Led *led3, Led *led4, Led *led5)
+View::View(Led *led1, Led *led2, Led *led3, Led *led4, Led *led5, LCD *lcd1)
 {
     light1 = led1;
     light2 = led2;
     light3 = led3;
     light4 = led4;
     light5 = led5;
+    lcd = lcd1;
     lightState = LIGHT_OFF;
 }
 
@@ -27,26 +28,32 @@ void View::lightView()
     {
         case LIGHT_OFF:
             lightOff();
+            lcd->WriteStringXY(0, 0, "Mode : OFF");
         break;
 
         case LIGHT_1:
             lightOn_1();
+            lcd->WriteStringXY(0, 0, "Mode : 1  ");
         break;
 
         case LIGHT_2:
             lightOn_2();
+            lcd->WriteStringXY(0, 0, "Mode : 2  ");
         break;
         
         case LIGHT_3:
             lightOn_3();
+            lcd->WriteStringXY(0, 0, "Mode : 3  ");
         break;
 
         case LIGHT_4:
             lightOn_4();
+            lcd->WriteStringXY(0, 0, "Mode : 4  ");
         break;
 
         case LIGHT_5:
             lightOn_5();
+            lcd->WriteStringXY(0, 0, "Mode : 5  ");
         break;
     }
 }
